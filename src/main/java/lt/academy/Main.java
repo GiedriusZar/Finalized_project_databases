@@ -35,10 +35,10 @@ public class Main {
         String surname = scanner.nextLine();
         System.out.print("Card number: ");
         String cardNo = scanner.nextLine();
-        if (cardNo.length() != 16) {
-            throw new CardNoLengthException("Invalid card number") {
-            };
-        }
+//        if (cardNo.length() != 16) {
+//            throw new CardNoLengthException("Invalid card number") {
+//            };
+//        }
         System.out.print("Address: ");
         String address = scanner.nextLine();
         User user = new User(name, surname, cardNo, address);

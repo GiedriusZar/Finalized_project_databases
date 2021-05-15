@@ -1,19 +1,22 @@
 package lt.academy.entities;
 
-import lt.academy.enums.ItemType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "item")
 public class Item{
 
+    private Long id;
     private String itemType;
     private String itemName;
-    private String itemID;
     private int itemPrice;
     private int itemStock;
 
-    public Item(String itemType, String itemName, String itemID, int itemPrice, int itemStock) {
+    public Item(String itemType, String itemName, Long itemID, int itemPrice, int itemStock) {
         this.itemType = itemType;
         this.itemName = itemName;
-        this.itemID = itemID;
+        this.id = itemID;
         this.itemPrice = itemPrice;
         this.itemStock = itemStock;
 
@@ -39,12 +42,12 @@ public class Item{
         this.itemName = itemName;
     }
 
-    public String getItemID() {
-        return itemID;
+    public Long getItemID() {
+        return id;
     }
 
-    public void setItemID(String itemID) {
-        this.itemID = itemID;
+    public void setItemID(Long itemID) {
+        this.id = itemID;
     }
 
     public int getItemPrice() {
@@ -66,7 +69,7 @@ public class Item{
     @Override
     public String toString() {
         return '\n' + "Type: " + itemType +
-                ", ItemID: " + itemID +
+                ", ItemID: " + id +
                 ", Item: " + itemName +
                 ", Price: " + itemPrice +
                 ", Stock left: " + itemStock + '\n';

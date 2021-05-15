@@ -1,51 +1,64 @@
 package lt.academy.usersServices;
 
-import lt.academy.generator.Generator;
 import lt.academy.entities.Cart;
 import lt.academy.entities.Item;
 import lt.academy.exceptions.UnavailableDeliveryDateException;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
 
-public class User implements Generator {
+@Entity
+@Table(name = "users")
+public class User {
+    @Id
+    private Long id;
+@Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+    @Column(name = "card_number")
+    private String cardNo;
+    @Column(name = "address")
+    private String address;
+    @Column(name = "delivery_date")
+    private LocalDate deliveryDate;
 
     private String name;
     private String surname;
-    private String cardNo;
-    private String address;
+    //    private String cardNo;
+//    private String address;
     private static int userID;
-    private int maxOrderAmount;
     private Cart cart;
-    private LocalDate deliveryDate;
+//    private LocalDate deliveryDate;
 
-    Random randomID = new Random();
+
+    public User() {
+    }
 
     public User(String name, String surname, String cardNo, String address) {
         this.name = name;
         this.surname = surname;
         this.cardNo = cardNo;
         this.address = address;
-        this.userID = generate();
-        this.maxOrderAmount = getMaxAmount();
         this.cart = new Cart();
         this.deliveryDate = deliveryDate;
     }
 
-    @Override
-    public int generate() {
-        int ID = randomID.nextInt(1000);
-        return ID;
-    }
 
     public void addItemToCart(Item item) {
         cart.getItemsCart().add(item);
-        item.setItemStock(item.getItemStock()-1);
+        item.setItemStock(item.getItemStock() - 1);
     }
-    public void removeItemFromCart (Item item){
+
+    public void removeItemFromCart(Item item) {
         cart.getItemsCart().remove(item);
-        item.setItemStock(item.getItemStock()+1);
+        item.setItemStock(item.getItemStock() + 1);
     }
 
     public List showCart() {
@@ -59,6 +72,7 @@ public class User implements Generator {
             this.deliveryDate = newDate;
         }
     }
+
     public String getName() {
         return name;
     }
@@ -75,10 +89,6 @@ public class User implements Generator {
         return deliveryDate;
     }
 
-    public int getMaxAmount() {
-        return maxOrderAmount;
-    }
-
     public int getUserID() {
         return userID;
     }
@@ -86,7 +96,6 @@ public class User implements Generator {
     public void setDeliveryDate(LocalDate deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
-
 
 
 }

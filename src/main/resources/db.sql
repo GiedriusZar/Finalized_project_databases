@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS cart;
 DROP TABLE IF EXISTS item;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE item
 (
@@ -10,19 +11,37 @@ CREATE TABLE item
     item_stock INT
 );
 
+CREATE TABLE users
+(
+    id            BIGSERIAL PRIMARY KEY NOT NULL,
+    first_name    VARCHAR(255),
+    last_name     VARCHAR(255),
+    card_number   VARCHAR(255),
+    address       VARCHAR(255),
+    delivery_date timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE cart
 (
     id         BIGSERIAL PRIMARY KEY NOT NULL,
-    owner      VARCHAR(255),
+    user_id    BIGINT                NOT NULL,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
 );
 
-ALTER TABLE item OWNER TO shopcart;
+ALTER TABLE item
+    OWNER TO shopcart;
 
-ALTER TABLE cart OWNER TO shopcart;
+ALTER TABLE cart
+    OWNER TO shopcart;
 
-INSERT INTO cart(owner, created_at)
-VALUES ('Giedrius',
+ALTER TABLE users
+    OWNER TO shopcart;
+
+INSERT INTO users (first_name, last_name, card_number, address, delivery_date)
+VALUES ('Giedrius', 'Zareckas', '0000000000000000', 'Kaunas', '2000-01-01');
+
+INSERT INTO cart(user_id, created_at)
+VALUES (1,
         '2021-05-12');
 
 INSERT INTO item (item_type, item_name, item_price, item_stock)
