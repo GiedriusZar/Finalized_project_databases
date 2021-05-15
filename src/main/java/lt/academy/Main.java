@@ -4,15 +4,22 @@ import lt.academy.exceptions.CardNoLengthException;
 import lt.academy.exceptions.DayOfWeekException;
 import lt.academy.exceptions.NoIdException;
 import lt.academy.exceptions.UnavailableDeliveryDateException;
-import lt.academy.model.Item;
+import lt.academy.entities.Item;
+import lt.academy.hibernate.HibernateConfiguration;
 import lt.academy.usersServices.User;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.Environment;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.*;
 
-public class Main
-{
-    public static void main( String[] args ) throws DayOfWeekException, CardNoLengthException {
+public class Main {
+    public static void main(String[] args) throws DayOfWeekException, CardNoLengthException {
+
+        HibernateConfiguration.getSession();
 
         Item item = new Item();
         ItemsBase allItemBase = new ItemsBase();
@@ -53,7 +60,7 @@ public class Main
                     String choice = scanner.nextLine();
                     try {
                         user.addItemToCart(allItemBase.getItem(choice));
-                    } catch (NoIdException e){
+                    } catch (NoIdException e) {
                         System.out.println(e.getMessage());
                     }
                     break;
@@ -65,35 +72,37 @@ public class Main
                     String itemId = scanner.nextLine();
                     try {
                         user.removeItemFromCart(allItemBase.getItem(itemId));
-                    } catch (NoIdException e){
+                    } catch (NoIdException e) {
                         System.out.println(e.getMessage());
                     }
                     break;
                 case "5":
-                    if(user.getDeliveryDate()==null){
+                    if (user.getDeliveryDate() == null) {
                         System.out.println("\n \t\t\t\t\t\t\t IMPORTANT!! \n You can't change order date if Your delivery will arive in less than 5 days\n\n How many days from now would You like Your dellivery to arrive?");
                         int days = scanner.nextInt();
                         user.setDeliveryDate(LocalDate.now().plusDays(days));
-                        if (user.getDeliveryDate().getDayOfWeek()==DayOfWeek.SATURDAY||user.getDeliveryDate().getDayOfWeek()==DayOfWeek.SUNDAY){
+                        if (user.getDeliveryDate().getDayOfWeek() == DayOfWeek.SATURDAY || user.getDeliveryDate().getDayOfWeek() == DayOfWeek.SUNDAY) {
                             throw new DayOfWeekException("We dont deliver items on weekends");
                         } else {
                             System.out.println("Your dellivery will arrive at: " + user.getDeliveryDate());
-                        }} else{
+                        }
+                    } else {
                         System.out.println("Your order date has already been accepted");
                     }
                     break;
                 case "6":
-                    if(user.getDeliveryDate()==null){
+                    if (user.getDeliveryDate() == null) {
                         System.out.println("There is no delivery date");
-                    }else {
+                    } else {
                         System.out.println("If You want to change delivery time, enter how many days from now would You like Your items to be delivered");
                         int newDays = scanner.nextInt();
                         try {
                             user.changeDate(LocalDate.now().plusDays(newDays));
-                        } catch (UnavailableDeliveryDateException e){
+                        } catch (UnavailableDeliveryDateException e) {
                             System.out.println(e.getMessage());
                             System.out.println("Your delivery date is: " + user.getDeliveryDate());
-                        }}
+                        }
+                    }
                     break;
                 case "7":
                     break;
@@ -136,5 +145,5 @@ public class Main
 //            System.out.println("3 - Exit");
 //        }
 
-    }
+}
 

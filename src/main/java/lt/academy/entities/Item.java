@@ -1,16 +1,16 @@
-package lt.academy.model;
+package lt.academy.entities;
 
 import lt.academy.enums.ItemType;
 
 public class Item{
 
-    private ItemType itemType;
+    private String itemType;
     private String itemName;
     private String itemID;
     private int itemPrice;
     private int itemStock;
 
-    public Item(ItemType itemType, String itemName, String itemID, int itemPrice, int itemStock) {
+    public Item(String itemType, String itemName, String itemID, int itemPrice, int itemStock) {
         this.itemType = itemType;
         this.itemName = itemName;
         this.itemID = itemID;
@@ -23,11 +23,11 @@ public class Item{
     public Item() {
     }
 
-    public ItemType getItemType() {
+    public String getItemType() {
         return itemType;
     }
 
-    public void setItemType(ItemType itemType) {
+    public void setItemType(String itemType) {
         this.itemType = itemType;
     }
 

@@ -2,7 +2,7 @@ package lt.academy;
 
 import lt.academy.enums.ItemType;
 import lt.academy.exceptions.NoIdException;
-import lt.academy.model.Item;
+import lt.academy.entities.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,24 +11,24 @@ public class ItemsBase {
 
     private List<Item> allItems = new ArrayList<>();
 
-    Item item1 = new Item(ItemType.FISHING, "Fishing rod", "257", 99, 5);
-    Item item2 = new Item(ItemType.CLOTHES, "Shoes", "277", 35, 32);
-    Item item3 = new Item(ItemType.DRINKS, "Whiskey Blue Label", "47", 189, 10);
-    Item item4 = new Item(ItemType.GARDENING, "Seeds", "144", 2, 255);
-    Item item5 = new Item(ItemType.ELECTRICITY, "Wires", "234", 11, 58);
-    Item item6 = new Item(ItemType.ELECTRICITY, "Box of light bulbs", "345", 48, 19);
-    Item item7 = new Item(ItemType.FISHING, "Fishing reel", "147", 139, 7);
-    Item item8 = new Item(ItemType.CLOTHES, "Pants", "167", 35, 35);
-    Item item9 = new Item(ItemType.DRINKS, "Whiskey Black Label", "48", 39, 60);
-    Item item10 = new Item(ItemType.FURNITURE, "Sofa", "687", 225, 3);
-    Item item11 = new Item(ItemType.FURNITURE, "Table", "299", 48, 34);
-    Item item12 = new Item(ItemType.FURNITURE, "Bed", "111", 625, 10);
-    Item item13 = new Item(ItemType.FURNITURE, "Sink", "399", 335, 5);
-    Item item14 = new Item(ItemType.FISHING, "Platform", "322", 299, 7);
-    Item item15 = new Item(ItemType.DRINKS, "Apple juice", "32", 3, 300);
-    Item item16 = new Item(ItemType.GARDENING, "Shovel", "102", 79, 16);
-    Item item17 = new Item(ItemType.GARDENING, "Gloves", "479", 1, 144);
-    Item item18 = new Item(ItemType.FISHING, "Worms", "170", 2, 188);
+    Item item1 = new Item("FISHING", "Fishing rod", "257", 99, 5);
+    Item item2 = new Item("CLOTHES", "Shoes", "277", 35, 32);
+    Item item3 = new Item("DRINKS", "Whiskey Blue Label", "47", 189, 10);
+    Item item4 = new Item("GARDENING", "Seeds", "144", 2, 255);
+    Item item5 = new Item("ELECTRICITY", "Wires", "234", 11, 58);
+    Item item6 = new Item("ELECTRICITY", "Box of light bulbs", "345", 48, 19);
+    Item item7 = new Item("FISHING", "Fishing reel", "147", 139, 7);
+    Item item8 = new Item("CLOTHES", "Pants", "167", 35, 35);
+    Item item9 = new Item("DRINKS", "Whiskey Black Label", "48", 39, 60);
+    Item item10 = new Item("FURNITURE", "Sofa", "687", 225, 3);
+    Item item11 = new Item("FURNITURE", "Table", "299", 48, 34);
+    Item item12 = new Item("FURNITURE", "Bed", "111", 625, 10);
+    Item item13 = new Item("FURNITURE", "Sink", "399", 335, 5);
+    Item item14 = new Item("FISHING", "Platform", "322", 299, 7);
+    Item item15 = new Item("DRINKS", "Apple juice", "32", 3, 300);
+    Item item16 = new Item("GARDENING", "Shovel", "102", 79, 16);
+    Item item17 = new Item("GARDENING", "Gloves", "479", 1, 144);
+    Item item18 = new Item("FISHING", "Worms", "170", 2, 188);
 
     public ItemsBase() {
         addAllItems();

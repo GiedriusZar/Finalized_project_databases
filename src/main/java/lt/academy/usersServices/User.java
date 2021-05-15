@@ -1,8 +1,8 @@
 package lt.academy.usersServices;
 
 import lt.academy.generator.Generator;
-import lt.academy.model.Cart;
-import lt.academy.model.Item;
+import lt.academy.entities.Cart;
+import lt.academy.entities.Item;
 import lt.academy.exceptions.UnavailableDeliveryDateException;
 
 import java.time.LocalDate;

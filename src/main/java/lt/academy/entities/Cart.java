@@ -1,9 +1,7 @@
-package lt.academy.model;
-
-import lt.academy.model.Item;
+package lt.academy.entities;
 
 import java.util.ArrayList;
-import java.util.List;
+import jav a.util.List;
 
 public class Cart {
 
