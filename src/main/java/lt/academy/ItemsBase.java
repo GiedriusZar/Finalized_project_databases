@@ -28,7 +28,6 @@ public class ItemsBase {
     Item item15 = new Item("DRINKS", "Apple juice", "32", 3, 300);
     Item item16 = new Item("GARDENING", "Shovel", "102", 79, 16);
     Item item17 = new Item("GARDENING", "Gloves", "479", 1, 144);
-    Item item18 = new Item("FISHING", "Worms", "170", 2, 188);
 
     public ItemsBase() {
         addAllItems();
@@ -58,7 +57,6 @@ public class ItemsBase {
         allItems.add(item15);
         allItems.add(item16);
         allItems.add(item17);
-        allItems.add(item18);
 
         return allItems;
     }
