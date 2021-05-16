@@ -1,4 +1,4 @@
-package lt.academy.usersServices.adminUserService;
+package lt.academy.services;
 
 public class AdminUser {
 

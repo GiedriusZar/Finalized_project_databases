@@ -1,5 +1,4 @@
 package lt.academy;
-
 import lt.academy.entities.Cart;
 import lt.academy.exceptions.CardNoLengthException;
 import lt.academy.exceptions.DayOfWeekException;
@@ -7,18 +6,24 @@ import lt.academy.exceptions.UnavailableDeliveryDateException;
 import lt.academy.entities.Item;
 import lt.academy.hibernate.HibernateConfiguration;
 import lt.academy.entities.User;
+import lt.academy.services.UserService;
 import org.hibernate.Session;
-
+import org.hibernate.Transaction;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws DayOfWeekException, CardNoLengthException {
-        Session session = HibernateConfiguration.getSession();
-        User user1 = new User("Tom", "Thompson", "8574698521036587", "Vilnius");
-        user1.setDeliveryDate(LocalDate.of(2021, 05, 16));
-        session.save(user1);
+        Session session = HibernateConfiguration.openSession();
+        Transaction transaction = session.beginTransaction();
+        UserService userService = new UserService();
+        User user1 = new User("Myname", "Mysurname", "555", "Pool", null);
+        userService.save(user1);
+        User userTest = userService.getById(1L);
+        userTest.setFirstName("ReallyGedrus");
+        userService.save(userTest);
+        session.close();
 
 
         Item item = new Item();
@@ -41,11 +46,13 @@ public class Main {
 //        }
         System.out.print("Address: ");
         String address = scanner.nextLine();
-        User user = new User(name, surname, cardNo, address);
+        User user = new User(name, surname, cardNo, address, null);
+        userService.save(user);
 
 
         while (!menuInput.equals("7")) {
             userMenu();
+
             menuInput = scanner.nextLine();
 
 
@@ -104,6 +111,8 @@ public class Main {
                     }
                     break;
                 case "7":
+                    transaction.commit();
+                    session.close();
                     break;
             }
         }

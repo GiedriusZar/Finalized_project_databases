@@ -43,15 +43,9 @@ public class User {
         this.lastName = lastName;
         this.cardNo = cardNo;
         this.address = address;
-        this.deliveryDate = deliveryDate;
+        this.deliveryDate = null;
     }
 
-    public User(String firstName, String lastName, String cardNo, String address) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.cardNo = cardNo;
-        this.address = address;
-    }
 
     //    public void addItemToCart(Item item) {
 //        cart.getItemsCart().add(item);
@@ -113,5 +107,13 @@ public class User {
 
     public void setDeliveryDate(LocalDate deliveryDate) {
         this.deliveryDate = deliveryDate;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

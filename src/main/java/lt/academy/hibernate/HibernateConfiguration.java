@@ -9,8 +9,9 @@ public class HibernateConfiguration {
 
     private static final SessionFactory factory = new Configuration().configure().buildSessionFactory();
 
-    public static Session getSession() {
+    public static Session openSession() {
         return factory.openSession();
     }
+
 
 }
