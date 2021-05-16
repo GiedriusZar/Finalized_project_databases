@@ -4,28 +4,36 @@
 <hibernate-configuration>
     <session-factory>
 
-        <property name = "hibernate.dialect">
+        <property name="hibernate.dialect">
             org.hibernate.dialect.PostgreSQL94Dialect
         </property>
 
-        <property name = "hibernate.connection.driver_class">
+        <property name="hibernate.connection.driver_class">
             org.postgresql.Driver
         </property>
 
-        <property name = "hibernate.connection.url">
-            jdbc:postgresql://localhost/hibernate
+        <property name="hibernate.connection.url">
+            jdbc:postgresql://localhost/shopcart
         </property>
 
-        <property name = "hibernate.connection.username">
+        <property name="hibernate.connection.username">
             shopcart
         </property>
 
-        <property name = "hibernate.connection.password">
+        <property name="hibernate.connection.password">
             shopcartpass
         </property>
 
-        <!-- List of XML mapping files -->
-<!--        <mapping resource = "Employee.hbm.xml"/> -->
+        <property name="hibernate.show_sql">
+            true
+        </property>
 
+        <property name="hibernate.format_sql">
+            true
+        </property>
+
+        <mapping class="lt.academy.entities.User"/>
+        <mapping class="lt.academy.entities.Cart"/>
+        <mapping class="lt.academy.entities.Item"/>
     </session-factory>
 </hibernate-configuration>

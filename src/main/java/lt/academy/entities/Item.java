@@ -1,16 +1,22 @@
 package lt.academy.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "item")
-public class Item{
-
+public class Item {
+    @Id
     private Long id;
+    @Column(name = "item_type")
     private String itemType;
+    @Column(name = "item_name")
     private String itemName;
+    @Column(name = "item_price")
     private int itemPrice;
+    @Column(name = "item_stock")
     private int itemStock;
 
     public Item(String itemType, String itemName, Long itemID, int itemPrice, int itemStock) {

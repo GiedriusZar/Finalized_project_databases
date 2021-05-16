@@ -24,25 +24,21 @@ CREATE TABLE users
 CREATE TABLE cart
 (
     id         BIGSERIAL PRIMARY KEY NOT NULL,
-    user_id    BIGINT                NOT NULL,
+    user_id    BIGINT                NOT NULL REFERENCES users(id),
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
 );
 
-ALTER TABLE item
-    OWNER TO shopcart;
+ALTER TABLE item OWNER TO shopcart;
 
-ALTER TABLE cart
-    OWNER TO shopcart;
+ALTER TABLE cart OWNER TO shopcart;
 
-ALTER TABLE users
-    OWNER TO shopcart;
+ALTER TABLE users OWNER TO shopcart;
 
 INSERT INTO users (first_name, last_name, card_number, address, delivery_date)
 VALUES ('Giedrius', 'Zareckas', '0000000000000000', 'Kaunas', '2000-01-01');
 
 INSERT INTO cart(user_id, created_at)
-VALUES (1,
-        '2021-05-12');
+VALUES (1, '2021-05-12');
 
 INSERT INTO item (item_type, item_name, item_price, item_stock)
 VALUES ('FISHING', 'Worms', 2, 100);

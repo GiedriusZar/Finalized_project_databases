@@ -1,16 +1,13 @@
 package lt.academy;
 
+import lt.academy.entities.Cart;
 import lt.academy.exceptions.CardNoLengthException;
 import lt.academy.exceptions.DayOfWeekException;
-import lt.academy.exceptions.NoIdException;
 import lt.academy.exceptions.UnavailableDeliveryDateException;
 import lt.academy.entities.Item;
 import lt.academy.hibernate.HibernateConfiguration;
-import lt.academy.usersServices.User;
+import lt.academy.entities.User;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.cfg.Environment;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -18,8 +15,11 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws DayOfWeekException, CardNoLengthException {
+        Session session = HibernateConfiguration.getSession();
+        User user1 = new User("Tom", "Thompson", "8574698521036587", "Vilnius");
+        user1.setDeliveryDate(LocalDate.of(2021, 05, 16));
+        session.save(user1);
 
-        HibernateConfiguration.getSession();
 
         Item item = new Item();
         ItemsBase allItemBase = new ItemsBase();
@@ -42,7 +42,6 @@ public class Main {
         System.out.print("Address: ");
         String address = scanner.nextLine();
         User user = new User(name, surname, cardNo, address);
-        System.out.println("Your login ID is: " + user.getUserID());
 
 
         while (!menuInput.equals("7")) {
@@ -58,23 +57,23 @@ public class Main {
                 case "2":
                     System.out.print("Enter item ID You want to add to Your cart: ");
                     String choice = scanner.nextLine();
-                    try {
-                        user.addItemToCart(allItemBase.getItem(choice));
-                    } catch (NoIdException e) {
-                        System.out.println(e.getMessage());
-                    }
+//                    try {
+//                        user.addItemToCart(allItemBase.getItem(choice));
+//                    } catch (NoIdException e) {
+//                        System.out.println(e.getMessage());
+//                    }
                     break;
                 case "3":
-                    System.out.println(user.showCart());
+//                    System.out.println(user.showCart());
                     break;
                 case "4":
                     System.out.println("Enter item ID from Your cart You want ");
                     String itemId = scanner.nextLine();
-                    try {
-                        user.removeItemFromCart(allItemBase.getItem(itemId));
-                    } catch (NoIdException e) {
-                        System.out.println(e.getMessage());
-                    }
+//                    try {
+//                        user.removeItemFromCart(allItemBase.getItem(itemId));
+//                    } catch (NoIdException e) {
+//                        System.out.println(e.getMessage());
+//                    }
                     break;
                 case "5":
                     if (user.getDeliveryDate() == null) {
