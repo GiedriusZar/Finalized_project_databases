@@ -51,7 +51,7 @@ public class User {
 //        cart.getItemsCart().add(item);
 //        item.setItemStock(item.getItemStock() - 1);
 //    }
-//
+//`
 //    public void removeItemFromCart(Item item) {
 //        cart.getItemsCart().remove(item);
 //        item.setItemStock(item.getItemStock() + 1);
@@ -115,5 +115,17 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", cardNo='" + cardNo + '\'' +
+                ", address='" + address + '\'' +
+                ", deliveryDate=" + deliveryDate +
+                '}';
     }
 }

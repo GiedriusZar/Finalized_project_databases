@@ -6,6 +6,8 @@ import lt.academy.exceptions.UnavailableDeliveryDateException;
 import lt.academy.entities.Item;
 import lt.academy.hibernate.HibernateConfiguration;
 import lt.academy.entities.User;
+import lt.academy.services.CartService;
+import lt.academy.services.ItemService;
 import lt.academy.services.UserService;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -18,13 +20,13 @@ public class Main {
         Session session = HibernateConfiguration.openSession();
         Transaction transaction = session.beginTransaction();
         UserService userService = new UserService();
-        User user1 = new User("Myname", "Mysurname", "555", "Pool", null);
-        userService.save(user1);
-        User userTest = userService.getById(1L);
-        userTest.setFirstName("ReallyGedrus");
-        userService.save(userTest);
-        session.close();
-
+        ItemService itemService = new ItemService();
+        CartService cartService = new CartService();
+        Item item1 = itemService.getById(6L);
+        System.out.println(item1.getItemType());
+        System.out.println(item1.getItemName());
+//        Cart cart = cartService.getById(1L);
+//        System.out.println(cart.getCreated_at());
 
         Item item = new Item();
         ItemsBase allItemBase = new ItemsBase();
@@ -59,7 +61,7 @@ public class Main {
             switch (menuInput) {
 
                 case "1":
-                    System.out.println(allItemBase.getAllItems());
+                    System.out.println(itemService.getAll());
                     break;
                 case "2":
                     System.out.print("Enter item ID You want to add to Your cart: ");
@@ -111,6 +113,7 @@ public class Main {
                     }
                     break;
                 case "7":
+                    userService.save(user);
                     transaction.commit();
                     session.close();
                     break;
