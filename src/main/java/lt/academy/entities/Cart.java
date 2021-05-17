@@ -1,33 +1,32 @@
 package lt.academy.entities;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 @Table(name = "cart")
 public class Cart {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-//    @ManyToOne()
-//    private User user;
-
-    @Column(name = "user_id")
-    private Long userId;
-
+    @ManyToOne()
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(name = "created_at")
     private LocalDateTime created_at;
 
 
-//    List<Item> itemsCart;
+    //    List<Item> itemsCart;
 //
     public Cart() {
-}
+
+    }
+
 //        itemsCart = new ArrayList<>();
 //
 //    }
@@ -43,14 +42,6 @@ public class Cart {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public LocalDateTime getCreated_at() {

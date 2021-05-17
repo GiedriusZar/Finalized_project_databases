@@ -22,11 +22,12 @@ public class Main {
         UserService userService = new UserService();
         ItemService itemService = new ItemService();
         CartService cartService = new CartService();
-        Item item1 = itemService.getById(6L);
-        System.out.println(item1.getItemType());
-        System.out.println(item1.getItemName());
-//        Cart cart = cartService.getById(1L);
-//        System.out.println(cart.getCreated_at());
+//        Item item1 = itemService.getById(6L);
+//        System.out.println(item1.getItemType());
+//        System.out.println(item1.getItemName());
+        Cart cart = cartService.getById(1L);
+        System.out.println(cart.getCreated_at());
+        session.close();
 
         Item item = new Item();
         ItemsBase allItemBase = new ItemsBase();
