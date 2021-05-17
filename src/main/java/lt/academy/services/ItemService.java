@@ -45,4 +45,34 @@ public class ItemService {
         return items;
 
     }
+
+    public Item save(Item item) {
+        Session session = HibernateConfiguration.openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.saveOrUpdate(item);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+        } finally {
+            session.close();
+        }
+        return item;
+    }
+
+    public void delete(Item item) {
+        Session session = HibernateConfiguration.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            session.delete(item);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+        } finally {
+            session.close();
+        }
+    }
 }

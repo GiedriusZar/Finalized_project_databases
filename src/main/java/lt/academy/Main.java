@@ -2,6 +2,7 @@ package lt.academy;
 import lt.academy.entities.Cart;
 import lt.academy.exceptions.CardNoLengthException;
 import lt.academy.exceptions.DayOfWeekException;
+import lt.academy.exceptions.NoIdException;
 import lt.academy.exceptions.UnavailableDeliveryDateException;
 import lt.academy.entities.Item;
 import lt.academy.hibernate.HibernateConfiguration;
@@ -25,11 +26,10 @@ public class Main {
 //        Item item1 = itemService.getById(6L);
 //        System.out.println(item1.getItemType());
 //        System.out.println(item1.getItemName());
-        Cart cart = cartService.getById(1L);
-        System.out.println(cart.getCreated_at());
-        session.close();
+//        Cart cart = cartService.getById(1L);
+//        System.out.println(cart.getCreated_at());
+//        System.out.println(itemService.getById(1L));
 
-        Item item = new Item();
         ItemsBase allItemBase = new ItemsBase();
 
         Scanner scanner = new Scanner(System.in);
@@ -67,23 +67,17 @@ public class Main {
                 case "2":
                     System.out.print("Enter item ID You want to add to Your cart: ");
                     String choice = scanner.nextLine();
-//                    try {
-//                        user.addItemToCart(allItemBase.getItem(choice));
-//                    } catch (NoIdException e) {
-//                        System.out.println(e.getMessage());
-//                    }
+                    Long id = Long.parseLong(choice);
+                    user.addItemToCart(itemService.getById(id));
                     break;
                 case "3":
-//                    System.out.println(user.showCart());
+                    System.out.println(user.showCart());
                     break;
                 case "4":
-                    System.out.println("Enter item ID from Your cart You want ");
+                    System.out.println("Enter item ID from Your cart You want to remove");
                     String itemId = scanner.nextLine();
-//                    try {
-//                        user.removeItemFromCart(allItemBase.getItem(itemId));
-//                    } catch (NoIdException e) {
-//                        System.out.println(e.getMessage());
-//                    }
+                    Long itemIdToRemove = Long.parseLong(itemId);
+                    user.removeItemFromCart(itemService.getById(itemIdToRemove));
                     break;
                 case "5":
                     if (user.getDeliveryDate() == null) {

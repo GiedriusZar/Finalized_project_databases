@@ -1,2 +1,4 @@
-package lt.academy.services;public class CartServiceTest {
+package lt.academy.services;
+
+public class CartServiceTest {
 }

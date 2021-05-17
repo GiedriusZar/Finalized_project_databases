@@ -2,6 +2,8 @@ package lt.academy.entities;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -20,20 +22,18 @@ public class Cart {
     @Column(name = "created_at")
     private LocalDateTime created_at;
 
+    @Transient
+    List<Item> itemsCart;
 
-    //    List<Item> itemsCart;
-//
+
     public Cart() {
-
+        itemsCart = new ArrayList<>();
     }
 
-//        itemsCart = new ArrayList<>();
-//
-//    }
-//
-//    public List<Item> getItemsCart() {
-//        return itemsCart;
-//    }
+
+    public List<Item> getItemsCart() {
+        return itemsCart;
+    }
 
 
     public Long getId() {

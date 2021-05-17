@@ -27,7 +27,7 @@ public class UserService {
         return user;
     }
 
-    public void save(User user) {
+    public User save(User user) {
         Session session = HibernateConfiguration.openSession();
         Transaction transaction = session.beginTransaction();
         try {
@@ -39,6 +39,7 @@ public class UserService {
         } finally {
             session.close();
         }
+        return user;
 
     }
 

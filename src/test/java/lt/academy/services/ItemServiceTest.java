@@ -1,2 +1,4 @@
-package lt.academy.services;public class ItemServiceTest {
+package lt.academy.services;
+
+public class ItemServiceTest {
 }

@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -36,7 +37,8 @@ public class User {
 //    private String cardNo;
 //    private String address;
 //    private static int userID;
-//    private Cart cart;
+    @Transient
+    private Cart cart;
 //    private LocalDate deliveryDate;
 
 
@@ -48,23 +50,24 @@ public class User {
         this.lastName = lastName;
         this.cardNo = cardNo;
         this.address = address;
+        this.cart = new Cart();
         this.deliveryDate = null;
     }
 
 
-    //    public void addItemToCart(Item item) {
-//        cart.getItemsCart().add(item);
-//        item.setItemStock(item.getItemStock() - 1);
-//    }
+        public void addItemToCart(Item item) {
+        cart.getItemsCart().add(item);
+    }
 //`
-//    public void removeItemFromCart(Item item) {
-//        cart.getItemsCart().remove(item);
-//        item.setItemStock(item.getItemStock() + 1);
-//    }
+    public void removeItemFromCart(Item item) {
+        cart.getItemsCart().remove(item);
+        item.setItemStock(item.getItemStock() + 1);
+    }
 //
-//    public List showCart() {
-//        return cart.getItemsCart();
-//    }
+    public List showCart() {
+        return cart.getItemsCart();
+
+    }
 
     public void changeDate(LocalDate newDate) throws UnavailableDeliveryDateException {
         if (newDate.getDayOfYear() - deliveryDate.getDayOfYear() <= 5) {
