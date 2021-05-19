@@ -14,8 +14,6 @@ public class UserServiceTest {
 
     @BeforeEach
     void beforeEach() {
-UserService userService = new UserService();
-
 
     }
 

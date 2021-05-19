@@ -58,12 +58,12 @@ public class User {
         public void addItemToCart(Item item) {
         cart.getItemsCart().add(item);
     }
-//`
+
     public void removeItemFromCart(Item item) {
         cart.getItemsCart().remove(item);
         item.setItemStock(item.getItemStock() + 1);
     }
-//
+
     public List showCart() {
         return cart.getItemsCart();
 
