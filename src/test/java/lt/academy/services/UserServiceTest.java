@@ -27,7 +27,6 @@ public class UserServiceTest {
     public void save() {
         UserService userService = new UserService();
         User user = new User("TestName", "TestSurname", "1234567891234567", "None", null);
-        userService.save(user);
         assertEquals(user.getCardNo().length(), 16);
     }
 }

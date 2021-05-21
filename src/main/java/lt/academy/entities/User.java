@@ -1,10 +1,6 @@
 package lt.academy.entities;
 
 import lt.academy.exceptions.UnavailableDeliveryDateException;
-import lt.academy.hibernate.HibernateConfiguration;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -32,15 +28,8 @@ public class User {
     @Column(name = "delivery_date")
     private LocalDate deliveryDate;
 
-//    private String name;
-//    private String surname;
-//    private String cardNo;
-//    private String address;
-//    private static int userID;
     @Transient
     private Cart cart;
-//    private LocalDate deliveryDate;
-
 
     public User() {
     }
@@ -61,7 +50,6 @@ public class User {
 
     public void removeItemFromCart(Item item) {
         cart.getItemsCart().remove(item);
-        item.setItemStock(item.getItemStock() + 1);
     }
 
     public List showCart() {

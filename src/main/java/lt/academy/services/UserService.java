@@ -1,11 +1,11 @@
 package lt.academy.services;
-
+import lt.academy.entities.Cart;
 import lt.academy.entities.User;
 import lt.academy.hibernate.HibernateConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +39,7 @@ public class UserService {
         } finally {
             session.close();
         }
+        Cart.create(new Cart(user, LocalDateTime.now()));
         return user;
 
     }

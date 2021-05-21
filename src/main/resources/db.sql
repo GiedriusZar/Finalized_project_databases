@@ -28,6 +28,13 @@ CREATE TABLE cart
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE cart_items(
+  cart_id BIGINT NOT NULL REFERENCES cart(id),
+  item_id BIGINT NOT NULL REFERENCES item(id)
+);
+
+
+
 ALTER TABLE item OWNER TO shopcart;
 
 ALTER TABLE cart OWNER TO shopcart;

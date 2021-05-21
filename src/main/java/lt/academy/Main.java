@@ -1,10 +1,7 @@
 package lt.academy;
-import lt.academy.entities.Cart;
 import lt.academy.exceptions.CardNoLengthException;
 import lt.academy.exceptions.DayOfWeekException;
-import lt.academy.exceptions.NoIdException;
 import lt.academy.exceptions.UnavailableDeliveryDateException;
-import lt.academy.entities.Item;
 import lt.academy.hibernate.HibernateConfiguration;
 import lt.academy.entities.User;
 import lt.academy.services.CartService;
@@ -23,14 +20,6 @@ public class Main {
         UserService userService = new UserService();
         ItemService itemService = new ItemService();
         CartService cartService = new CartService();
-//        Item item1 = itemService.getById(6L);
-//        System.out.println(item1.getItemType());
-//        System.out.println(item1.getItemName());
-//        Cart cart = cartService.getById(1L);
-//        System.out.println(cart.getCreated_at());
-//        System.out.println(itemService.getById(1L));
-
-        ItemsBase allItemBase = new ItemsBase();
 
         Scanner scanner = new Scanner(System.in);
 

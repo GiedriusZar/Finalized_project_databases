@@ -1,12 +1,9 @@
 package lt.academy.services;
-
 import lt.academy.entities.Item;
-import lt.academy.entities.User;
 import lt.academy.hibernate.HibernateConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
 import java.util.ArrayList;
 import java.util.List;
 

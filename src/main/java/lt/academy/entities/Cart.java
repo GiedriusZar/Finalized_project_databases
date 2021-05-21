@@ -1,5 +1,9 @@
 package lt.academy.entities;
 
+import lt.academy.hibernate.HibernateConfiguration;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,14 +26,20 @@ public class Cart {
     @Column(name = "created_at")
     private LocalDateTime created_at;
 
-    @Transient
-    List<Item> itemsCart;
-
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "cart_items", joinColumns = {
+            @JoinColumn(referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
+    private List<Item> itemsCart;
 
     public Cart() {
         itemsCart = new ArrayList<>();
     }
 
+    public Cart(User user, LocalDateTime created_at) {
+        this.user = user;
+        this.created_at = created_at;
+    }
 
     public List<Item> getItemsCart() {
         return itemsCart;
@@ -50,5 +60,20 @@ public class Cart {
 
     public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
+    }
+
+    public static Cart create(Cart cart) {
+        Session session = HibernateConfiguration.openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.saveOrUpdate(cart);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+        } finally {
+            session.close();
+        }
+        return cart;
     }
 }
